@@ -52,19 +52,15 @@ dvi:
 	doxygen
 
 check_style:
-	@cp ../materials/linters/.clang-format ./
 	@clang-format -n $(SRC_PATH)*.c $(T_PATH)*.c  gui/cli/* >> style 2>&1
 	@if [ -s style ]; then \
 	   echo "There are style errors!!! "; \
 	else \
 	   echo "Code is clean ( ˘⌣˘)"; \
 	fi
-	@rm style .clang-format
 
 get_style:
-	@cp ../materials/linters/.clang-format .
 	@clang-format -i $(SRC_PATH)*.c $(T_PATH)*.c  gui/cli/*
-	@rm .clang-format
 	@echo "Code was stiled with clang-format!"
 
 valgrind : clean test
